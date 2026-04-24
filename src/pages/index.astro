@@ -207,7 +207,10 @@ import {
           {
             partnerLinks.map((partner) => (
               <a
-                class="partner-chip"
+                class:list={[
+                  "partner-chip",
+                  partner.label === "Master Builders NZ" && "is-centered-logo"
+                ]}
                 href={partner.href}
                 target="_blank"
                 rel="noreferrer"

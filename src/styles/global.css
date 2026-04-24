@@ -1923,6 +1923,14 @@ p {
   width: calc(100% - 1.8rem);
 }
 
+.partner-chip.is-centered-logo .partner-logo-wrap {
+  justify-content: center;
+}
+
+.partner-chip.is-centered-logo .partner-logo-image {
+  object-position: center center;
+}
+
 .partner-logo-image {
   display: block;
   width: 100%;
