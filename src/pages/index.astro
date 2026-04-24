@@ -16,6 +16,12 @@ import {
   bodyClass="is-home"
 >
   <section class="home-hero">
+    <div
+      class="hero-poster"
+      aria-hidden="true"
+      style="background-image: url('/home/weiti-bay.png');"
+    ></div>
+
     <video
       class="hero-video"
       autoplay
@@ -23,7 +29,9 @@ import {
       loop
       playsinline
       preload="metadata"
+      poster="/home/weiti-bay.png"
       aria-label="ASC Homes hero video"
+      data-hero-video
     >
       <source src="/media/hero.mp4" type="video/mp4" />
     </video>
@@ -302,4 +310,19 @@ import {
     update();
     start();
   });
+
+  const heroVideo = document.querySelector("[data-hero-video]");
+
+  if (heroVideo instanceof HTMLVideoElement) {
+    const revealVideo = () => {
+      heroVideo.classList.add("is-ready");
+    };
+
+    if (heroVideo.readyState >= 2) {
+      revealVideo();
+    } else {
+      heroVideo.addEventListener("loadeddata", revealVideo, { once: true });
+      heroVideo.addEventListener("canplay", revealVideo, { once: true });
+    }
+  }
 </script>
