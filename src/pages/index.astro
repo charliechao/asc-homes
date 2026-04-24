@@ -1,0 +1,302 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { site } from "../data/site";
+import {
+  featuredProjects,
+  partnerLinks,
+  processSteps,
+  storySection,
+  testimonials
+} from "../data/home";
+---
+
+<BaseLayout
+  title="ASC Homes | Building Excellence Beyond the Ordinary"
+  description="Design-led homes, bespoke construction, and project delivery by ASC Homes."
+  bodyClass="is-home"
+>
+  <section class="home-hero">
+    <video
+      class="hero-video"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="metadata"
+      aria-label="ASC Homes hero video"
+    >
+      <source src="/media/hero.mp4" type="video/mp4" />
+    </video>
+
+    <div class="hero-overlay"></div>
+
+    <div class="container hero-content">
+      <div class="hero-copy" data-reveal>
+        <h1>Building Excellence</h1>
+      </div>
+    </div>
+
+    <a class="hero-scroll" href="#story" aria-label="Scroll to story section">
+      <span></span>
+    </a>
+  </section>
+
+  <div class="page-shell homepage-shell">
+    <div class="container">
+      <section class="story-section" id="story">
+        <div class="story-copy content-panel" data-reveal>
+          <p class="panel-label">{storySection.eyebrow}</p>
+          <div class="story-title">
+            <span>{storySection.title.lead}</span>
+            <span class="story-title-accent">{storySection.title.accent}</span>
+          </div>
+          <p class="intro-copy">
+            {storySection.intro}
+          </p>
+          <p>{storySection.body}</p>
+
+          <div class="story-flow">
+            {
+              storySection.flow.map((item) => (
+                <span class="story-flow-item">{item}</span>
+              ))
+            }
+          </div>
+
+          <a class="story-arrow-link" href="#featured-projects">
+            Continue through our work
+          </a>
+        </div>
+
+        <div class="story-gallery" data-reveal>
+          <article class="story-image-card is-large">
+            <img src="/home/kewa-road.jpg" alt="Kewa Road exterior" />
+          </article>
+          <article class="story-image-card">
+            <img src="/home/highland-road.jpg" alt="Highland Road interior" />
+          </article>
+        </div>
+      </section>
+
+      <section class="process-section">
+        <div class="section-heading">
+          <p class="panel-label">Design &amp; Build</p>
+          <h2>A single team guiding the full journey.</h2>
+          <p class="intro-copy">
+            ASC Homes combines design thinking, technical coordination, and
+            construction delivery so every decision stays aligned from first
+            conversation to final handover.
+          </p>
+        </div>
+
+        <div class="process-grid">
+          {
+            processSteps.map((step) => (
+              <article class="process-card">
+                <span class="process-number">{step.number}</span>
+                <h3>{step.title}</h3>
+                <p>{step.description}</p>
+              </article>
+            ))
+          }
+        </div>
+      </section>
+
+      <section class="featured-section" id="featured-projects">
+        <div class="section-heading">
+          <p class="panel-label">Featured Work</p>
+          <h2>Selected projects with strong architectural character.</h2>
+          <p class="intro-copy">
+            A first look at the project library, from crisp contemporary
+            exteriors to warm, finely detailed interiors.
+          </p>
+        </div>
+
+        <div class="featured-layout">
+          <a class="featured-primary" href={featuredProjects[0].href}>
+            <img
+              src={featuredProjects[0].image}
+              alt={`${featuredProjects[0].title} project`}
+            />
+            <div class="featured-overlay">
+              <p>{featuredProjects[0].year}</p>
+              <h3>{featuredProjects[0].title}</h3>
+              <span>{featuredProjects[0].detail}</span>
+            </div>
+          </a>
+
+          <div class="featured-secondary">
+            {
+              featuredProjects.slice(1).map((project) => (
+                <article class="featured-card">
+                  <img src={project.image} alt={`${project.title} project`} />
+                  <div class="featured-card-copy">
+                    <p>{project.year}</p>
+                    <h3>{project.title}</h3>
+                    <span>{project.detail}</span>
+                  </div>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+
+        <div class="section-actions">
+          <a class="button secondary" href="/our-work/">Explore all projects</a>
+        </div>
+      </section>
+
+      <section class="testimonial-section">
+        <div class="section-heading">
+          <p class="panel-label">Client Experience</p>
+          <h2>Built on trust, communication, and careful delivery.</h2>
+        </div>
+
+        <div class="testimonial-slider" data-testimonial-slider>
+          <button
+            class="testimonial-arrow"
+            type="button"
+            data-direction="-1"
+            aria-label="Previous testimonial"
+          >
+            <span>&larr;</span>
+          </button>
+
+          <div class="testimonial-viewport">
+            <div class="testimonial-track" data-testimonial-track>
+              {
+                testimonials.map((item) => (
+                  <article class="testimonial-card testimonial-slide">
+                    <p class="testimonial-quote">"{item.quote}"</p>
+                    <p class="testimonial-client">{item.client}</p>
+                  </article>
+                ))
+              }
+            </div>
+          </div>
+
+          <button
+            class="testimonial-arrow"
+            type="button"
+            data-direction="1"
+            aria-label="Next testimonial"
+          >
+            <span>&rarr;</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="partner-section">
+        <div class="section-heading">
+          <p class="panel-label">Trusted Connections</p>
+          <h2>Selected collaborators and industry references.</h2>
+        </div>
+
+        <div class="partner-strip">
+          {
+            partnerLinks.map((partner) => (
+              <a
+                class="partner-chip"
+                href={partner.href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={partner.label}
+              >
+                <span class="partner-logo-wrap">
+                  <img src={partner.image} alt={partner.imageAlt} class="partner-logo-image" />
+                </span>
+                <span class="partner-chip-arrow">&nearr;</span>
+              </a>
+            ))
+          }
+        </div>
+      </section>
+
+      <section class="cta-section">
+        <div class="cta-panel">
+          <div>
+            <p class="panel-label">Ready to Start</p>
+            <h2>Bring your next home to life with ASC Homes.</h2>
+            <p class="intro-copy">
+              Talk to the team about a bespoke new build, renovation, or design
+              and build project.
+            </p>
+          </div>
+
+          <div class="cta-actions">
+            <a class="button primary" href={site.contact.phoneHref}>Call Us</a>
+            <a class="button secondary" href="/free-estimate/">Free Estimate</a>
+            <a class="button secondary" href={`mailto:${site.contact.email}`}>Email Us</a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</BaseLayout>
+
+<script is:inline>
+  const reveals = document.querySelectorAll("[data-reveal]");
+
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.22 }
+    );
+
+    reveals.forEach((item) => observer.observe(item));
+  } else {
+    reveals.forEach((item) => item.classList.add("is-visible"));
+  }
+
+  const sliders = document.querySelectorAll("[data-testimonial-slider]");
+
+  sliders.forEach((slider) => {
+    const track = slider.querySelector("[data-testimonial-track]");
+    const slides = track ? Array.from(track.children) : [];
+    const buttons = Array.from(
+      slider.querySelectorAll("[data-direction]")
+    );
+
+    if (!track || slides.length === 0) return;
+
+    let index = 0;
+    let timer;
+
+    const update = () => {
+      track.style.transform = `translateX(-${index * 100}%)`;
+    };
+
+    const goTo = (nextIndex) => {
+      index = (nextIndex + slides.length) % slides.length;
+      update();
+    };
+
+    const start = () => {
+      window.clearInterval(timer);
+      timer = window.setInterval(() => {
+        goTo(index + 1);
+      }, 5200);
+    };
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const direction = Number(button.dataset.direction || "1");
+        goTo(index + direction);
+        start();
+      });
+    });
+
+    slider.addEventListener("mouseenter", () => window.clearInterval(timer));
+    slider.addEventListener("mouseleave", start);
+
+    update();
+    start();
+  });
+</script>

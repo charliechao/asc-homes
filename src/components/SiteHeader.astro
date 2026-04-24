@@ -1,0 +1,63 @@
+---
+import { site } from "../data/site";
+
+type Props = {
+  currentPath: string;
+};
+
+const { currentPath } = Astro.props;
+
+const normalizePath = (value: string) => {
+  if (!value) return "/";
+  const trimmed = value.endsWith("/") ? value : `${value}/`;
+  return trimmed === "//" ? "/" : trimmed;
+};
+
+const isCurrent = (href: string) => {
+  const current = normalizePath(currentPath);
+  const target = normalizePath(href);
+  return target === "/" ? current === "/" : current.startsWith(target);
+};
+---
+
+<header class="site-header" data-site-header>
+  <div class="container shell">
+    <a class="brand" href="/" aria-label={`${site.name} home`}>
+      <img src="/brand/logo.png" alt={site.name} />
+    </a>
+
+    <nav class="main-nav" aria-label="Primary navigation">
+      {
+        site.nav.map((item) => (
+          <a
+            href={item.href}
+            class:list={[
+              "nav-link",
+              item.featured && "is-featured",
+              isCurrent(item.href) && "is-current"
+            ]}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <a class="header-contact" href="/contact-us/">
+      Contact Us
+    </a>
+  </div>
+</header>
+
+<script is:inline>
+  const syncHomeHeader = () => {
+    const body = document.body;
+    if (!body.classList.contains("is-home")) return;
+
+    const isScrolled = window.scrollY > 24;
+    body.classList.toggle("is-home-scrolled", isScrolled);
+  };
+
+  syncHomeHeader();
+  window.addEventListener("scroll", syncHomeHeader, { passive: true });
+</script>

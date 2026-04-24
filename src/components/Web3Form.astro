@@ -1,0 +1,122 @@
+---
+type Props = {
+  formTitle: string;
+  formIntro: string;
+  submitLabel: string;
+  subject: string;
+  source: string;
+};
+
+const {
+  formTitle,
+  formIntro,
+  submitLabel,
+  subject,
+  source
+} = Astro.props;
+
+const accessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY ?? "";
+const isConfigured = Boolean(accessKey);
+---
+
+<div class="form-panel">
+  <div class="form-panel-head">
+    <h2>{formTitle}</h2>
+    <p>{formIntro}</p>
+  </div>
+
+  {
+    !isConfigured && (
+      <p class="form-config-note">
+        Web3Forms access key is not configured yet. Add
+        <code>PUBLIC_WEB3FORMS_ACCESS_KEY</code> to enable live submission.
+      </p>
+    )
+  }
+
+  <form
+    class="web3-form"
+    data-web3form
+    data-success-message="Thanks, your message has been sent."
+    data-error-message="Something went wrong. Please try again."
+  >
+    <input type="hidden" name="access_key" value={accessKey} />
+    <input type="hidden" name="subject" value={subject} />
+    <input type="hidden" name="from_name" value="ASC Homes Website" />
+    <input type="hidden" name="source" value={source} />
+    <input type="checkbox" name="botcheck" class="form-botcheck" tabindex="-1" autocomplete="off" />
+
+    <div class="form-grid">
+      <slot />
+    </div>
+
+    <div class="form-actions">
+      <button class="button primary" type="submit">{submitLabel}</button>
+      <p class="form-status" data-form-status aria-live="polite"></p>
+    </div>
+  </form>
+</div>
+
+<script is:inline>
+  const forms = document.querySelectorAll("[data-web3form]");
+
+  for (const form of forms) {
+    if (form.dataset.bound === "true") continue;
+    form.dataset.bound = "true";
+
+    const status = form.querySelector("[data-form-status]");
+    const submitButton = form.querySelector('button[type="submit"]');
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const formData = new FormData(form);
+      const accessKey = String(formData.get("access_key") || "").trim();
+
+      if (!accessKey) {
+        if (status) {
+          status.textContent =
+            "Form is ready, but the Web3Forms access key still needs to be added.";
+          status.dataset.state = "error";
+        }
+        return;
+      }
+
+      if (submitButton) submitButton.setAttribute("disabled", "disabled");
+      if (status) {
+        status.textContent = "Sending...";
+        status.dataset.state = "loading";
+      }
+
+      try {
+        const response = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          body: formData
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          form.reset();
+          if (status) {
+            status.textContent =
+              form.dataset.successMessage || "Thanks, your message has been sent.";
+            status.dataset.state = "success";
+          }
+        } else {
+          throw new Error(result?.message || "Submission failed");
+        }
+      } catch (error) {
+        if (status) {
+          status.textContent =
+            error instanceof Error
+              ? error.message
+              : form.dataset.errorMessage || "Something went wrong. Please try again.";
+          status.dataset.state = "error";
+        }
+      } finally {
+        if (submitButton) submitButton.removeAttribute("disabled");
+      }
+    });
+  }
+</script>

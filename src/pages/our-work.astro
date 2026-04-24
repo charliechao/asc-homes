@@ -1,0 +1,82 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { projects } from "../data/projects";
+
+const showcaseProjects = projects.slice(0, 7);
+const libraryProjects = projects.slice(7);
+---
+
+<BaseLayout title="Our Work | ASC Homes">
+  <div class="page-shell portfolio-shell">
+    <div class="container">
+      <section class="portfolio-transition">
+        <p class="panel-label">Our Work</p>
+        <div class="portfolio-transition-grid">
+          <div class="portfolio-transition-copy">
+            <p class="portfolio-transition-kicker">Spatial Excellence</p>
+            <h1>
+              A curated body of work shaped through design precision and quiet
+              construction confidence.
+            </h1>
+            <p class="intro-copy">
+              From coastal homes to detail-led urban builds, each project is
+              presented with a more editorial composition that lets the
+              architecture, material palette, and address carry the story.
+            </p>
+          </div>
+          <div class="portfolio-transition-note">
+            <span>Design</span>
+            <span>Build</span>
+            <span>Project Management</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="portfolio-composition">
+        {
+          showcaseProjects.map((project, index) => (
+            <a
+              class:list={[
+                "portfolio-composition-card",
+                index < 4 ? "is-portrait" : "is-landscape"
+              ]}
+              href={`/our-work/${project.slug}/`}
+            >
+              <img src={project.coverImage} alt={project.coverAlt} />
+              <div class="portfolio-composition-overlay">
+                <p>{project.location}</p>
+                <h2>{project.title}</h2>
+                <strong>{project.year}</strong>
+                <span>{project.cardSummary}</span>
+              </div>
+            </a>
+          ))
+        }
+      </section>
+
+      <section class="portfolio-library">
+        <div class="section-heading">
+          <p class="panel-label">Project Library</p>
+          <h2>Additional projects presented through the full ASC Homes archive.</h2>
+        </div>
+
+        <div class="portfolio-grid">
+          {
+            libraryProjects.map((project) => (
+              <a class="portfolio-card" href={`/our-work/${project.slug}/`}>
+                <div class="portfolio-card-image">
+                  <img src={project.coverImage} alt={project.coverAlt} />
+                </div>
+                <div class="portfolio-card-copy">
+                  <p>{project.year} / {project.location}</p>
+                  <h3>{project.title}</h3>
+                  <span>{project.cardSummary}</span>
+                </div>
+              </a>
+            ))
+          }
+        </div>
+      </section>
+    </div>
+  </div>
+</BaseLayout>

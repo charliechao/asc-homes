@@ -1,0 +1,43 @@
+---
+import { site } from "../data/site";
+---
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <img src="/brand/logo.png" alt={site.name} />
+      <p>
+        Design-led homes, project management, and construction delivered with a
+        quiet luxury sensibility.
+      </p>
+    </div>
+
+    <div>
+      <p class="footer-label">Navigation</p>
+      <ul class="footer-list">
+        {
+          site.nav.map((item) => (
+            <li>
+              <a href={item.href}>{item.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div>
+      <p class="footer-label">Contact</p>
+      <ul class="footer-list">
+        <li>
+          <a href={site.contact.phoneHref}>{site.contact.phoneDisplay}</a>
+        </li>
+        <li>
+          <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>
+        </li>
+        <li>
+          <a href="/free-estimate/">Free Estimate</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 180" role="img" aria-labelledby="title desc">
+  <title id="title">Jones Architects placeholder logo</title>
+  <desc id="desc">A simple placeholder wordmark for Jones Architects.</desc>
+  <rect width="720" height="180" fill="none"/>
+  <text x="50%" y="78" text-anchor="middle" fill="#e6d7bb" font-family="'Cormorant Garamond', Georgia, serif" font-size="52" font-weight="600" letter-spacing="6">JONES</text>
+  <text x="50%" y="128" text-anchor="middle" fill="#bda26d" font-family="Manrope, Arial, sans-serif" font-size="24" font-weight="600" letter-spacing="10">ARCHITECTS</text>
+  <line x1="188" y1="103" x2="268" y2="103" stroke="#6f5d3f" stroke-width="1.5"/>
+  <line x1="452" y1="103" x2="532" y2="103" stroke="#6f5d3f" stroke-width="1.5"/>
+</svg>

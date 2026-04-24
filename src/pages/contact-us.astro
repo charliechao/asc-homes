@@ -1,0 +1,104 @@
+---
+import Web3Form from "../components/Web3Form.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { site } from "../data/site";
+---
+
+<BaseLayout title="Contact Us | ASC Homes">
+  <div class="page-shell contact-shell">
+    <div class="container">
+      <section class="contact-grid">
+        <div class="contact-copy">
+          <p class="panel-label">Contact Us</p>
+          <h1>Start the conversation about your next home.</h1>
+          <p class="intro-copy">
+            Whether you are planning a bespoke new build, renovation, or full
+            design-and-build project, ASC Homes is ready to talk through the
+            brief.
+          </p>
+
+          <div class="contact-visual-grid" aria-hidden="true">
+            <div class="contact-visual-card is-large">
+              <img src="/home/highland-road.jpg" alt="" />
+              <div class="contact-visual-overlay">
+                <span>Warm Interiors</span>
+              </div>
+            </div>
+
+            <div class="contact-visual-card">
+              <img src="/home/kewa-road.jpg" alt="" />
+              <div class="contact-visual-overlay">
+                <span>Modern Exteriors</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-card-grid">
+            <a class="contact-card" href={site.contact.phoneHref}>
+              <p class="contact-card-label">Call Us</p>
+              <strong>{site.contact.phoneDisplay}</strong>
+              <span>Direct phone contact for first conversations.</span>
+            </a>
+
+            <a class="contact-card" href={`mailto:${site.contact.email}`}>
+              <p class="contact-card-label">Email Us</p>
+              <strong>{site.contact.email}</strong>
+              <span>Send through drawings, ideas, or project notes.</span>
+            </a>
+
+            <a class="contact-card" href="/free-estimate/">
+              <p class="contact-card-label">Free Estimate</p>
+              <strong>Project enquiry form</strong>
+              <span>Use the dedicated form for a fuller project brief.</span>
+            </a>
+          </div>
+        </div>
+
+        <Web3Form
+          formTitle="General Enquiry"
+          formIntro="Send a message and the ASC Homes team will get back to you."
+          submitLabel="Send Message"
+          subject="ASC Homes Contact Enquiry"
+          source="contact-page"
+        >
+          <label class="form-field">
+            <span>Full Name</span>
+            <input type="text" name="name" autocomplete="name" required />
+          </label>
+
+          <label class="form-field">
+            <span>Email</span>
+            <input type="email" name="email" autocomplete="email" required />
+          </label>
+
+          <label class="form-field">
+            <span>Phone</span>
+            <input type="tel" name="phone" autocomplete="tel" />
+          </label>
+
+          <label class="form-field">
+            <span>Project Type</span>
+            <select name="project_type" required>
+              <option value="">Select a project type</option>
+              <option>New Build</option>
+              <option>Renovation</option>
+              <option>Extension</option>
+              <option>Design & Build</option>
+              <option>Subdivision</option>
+            </select>
+          </label>
+
+          <label class="form-field form-field-full">
+            <span>Message</span>
+            <textarea
+              name="message"
+              rows="5"
+              placeholder="Tell us a little about your project, timeline, or site."
+              required
+            ></textarea>
+          </label>
+        </Web3Form>
+      </section>
+    </div>
+  </div>
+</BaseLayout>

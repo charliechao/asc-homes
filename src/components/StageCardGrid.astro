@@ -1,0 +1,17 @@
+---
+import { stageOnePages } from "../data/site";
+---
+
+<section class="stage-grid" aria-label="Stage one route map">
+  {
+    stageOnePages.map((page) => (
+      <article class="stage-card">
+        <p class="stage-card-label">Route Ready</p>
+        <h2>{page.title}</h2>
+        <p class="stage-card-status">{page.status}</p>
+        <p>{page.detail}</p>
+        <a href={page.href}>Open placeholder</a>
+      </article>
+    ))
+  }
+</section>

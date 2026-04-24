@@ -1,0 +1,21 @@
+---
+type Props = {
+  eyebrow: string;
+  title: string;
+  description: string;
+  align?: "left" | "center";
+};
+
+const {
+  eyebrow,
+  title,
+  description,
+  align = "left"
+} = Astro.props;
+---
+
+<section class:list={["page-intro", align === "center" && "is-centered"]}>
+  <p class="eyebrow">{eyebrow}</p>
+  <h1>{title}</h1>
+  <p class="intro-copy">{description}</p>
+</section>

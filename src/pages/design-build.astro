@@ -1,0 +1,90 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import {
+  designBuildBenefits,
+  designBuildSections
+} from "../data/about";
+import { processSteps } from "../data/home";
+---
+
+<BaseLayout title="Design & Build | ASC Homes">
+  <div class="page-shell design-build-shell">
+    <div class="container">
+      <section class="interior-hero interior-hero-reverse">
+        <div class="interior-hero-copy">
+          <p class="panel-label">{designBuildSections.eyebrow}</p>
+          <h1>{designBuildSections.title}</h1>
+          <p class="intro-copy">{designBuildSections.intro}</p>
+          <p>{designBuildSections.body}</p>
+
+          <div class="project-hero-actions">
+            <a class="button primary" href="/contact-us/">Talk to ASC Homes</a>
+            <a class="button secondary" href="/our-work/weiti-bay/">View Weiti Bay</a>
+          </div>
+        </div>
+
+        <div class="interior-hero-image">
+          <img src="/home/weiti-bay.png" alt="Weiti Bay featured project" />
+        </div>
+      </section>
+
+      <section class="design-build-feature">
+        <div class="section-heading">
+          <p class="panel-label">Featured Project</p>
+          <h2>Weiti Bay as a benchmark for the design-and-build standard.</h2>
+          <p class="intro-copy">
+            Luxurious yet practical, the Weiti Bay concept shows the type of
+            architectural clarity and spatial ambition ASC Homes is designed to
+            carry through with confidence.
+          </p>
+        </div>
+
+        <div class="design-feature-panel">
+          <div class="design-feature-copy content-panel">
+            <p>
+              The project combines oversized glazing, pavilion-like volumes,
+              generous kitchen and living areas, and a strong visual connection
+              to the surrounding landscape. It is a useful example of how the
+              studio balances architectural expression with everyday function.
+            </p>
+            <p>
+              ASC Homes: where your ambition meets our expertise. From
+              subdivision to interior styling, the process stays coordinated,
+              technically grounded, and carefully executed.
+            </p>
+          </div>
+
+          <div class="design-feature-benefits">
+            {
+              designBuildBenefits.map((item) => (
+                <article class="value-card">
+                  <h3>{item.title}</h3>
+                  <p>{item.description}</p>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <section class="process-section">
+        <div class="section-heading">
+          <p class="panel-label">How It Works</p>
+          <h2>The same process, presented as the core service story.</h2>
+        </div>
+
+        <div class="process-grid">
+          {
+            processSteps.map((step) => (
+              <article class="process-card">
+                <span class="process-number">{step.number}</span>
+                <h3>{step.title}</h3>
+                <p>{step.description}</p>
+              </article>
+            ))
+          }
+        </div>
+      </section>
+    </div>
+  </div>
+</BaseLayout>

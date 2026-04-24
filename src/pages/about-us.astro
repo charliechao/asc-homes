@@ -1,0 +1,88 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import {
+  companyStory,
+  serviceList,
+  teamMembers,
+  whyChooseUs
+} from "../data/about";
+---
+
+<BaseLayout title="About Us | ASC Homes">
+  <div class="page-shell about-shell">
+    <div class="container">
+      <section class="interior-hero">
+        <div class="interior-hero-copy">
+          <p class="panel-label">{companyStory.eyebrow}</p>
+          <h1>{companyStory.title}</h1>
+          <p class="intro-copy">{companyStory.intro}</p>
+          <p>{companyStory.body}</p>
+        </div>
+
+        <div class="interior-hero-image">
+          <img src="/home/highland-road.jpg" alt="ASC Homes interior detail" />
+        </div>
+      </section>
+
+      <section class="about-values">
+        <div class="section-heading">
+          <p class="panel-label">Why Pick Us</p>
+          <h2>Strong design thinking, careful delivery, and a calmer client experience.</h2>
+        </div>
+
+        <div class="value-grid">
+          {
+            whyChooseUs.map((item) => (
+              <article class="value-card">
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </article>
+            ))
+          }
+        </div>
+      </section>
+
+      <section class="about-services">
+        <div class="section-heading">
+          <p class="panel-label">What We Do</p>
+          <h2>Services now merged into the company story, just as planned.</h2>
+          <p class="intro-copy">
+            This page folds the former `What We Do` content into a more premium
+            company overview so the top-level navigation stays simpler and more
+            focused.
+          </p>
+        </div>
+
+        <div class="service-pill-grid">
+          {
+            serviceList.map((service) => (
+              <div class="service-pill">{service}</div>
+            ))
+          }
+        </div>
+      </section>
+
+      <section class="about-team">
+        <div class="section-heading">
+          <p class="panel-label">Our Team</p>
+          <h2>The people guiding design, delivery, and relationships.</h2>
+        </div>
+
+        <div class="team-grid">
+          {
+            teamMembers.map((member) => (
+              <article class="team-card">
+                <div class="team-card-image">
+                  <img src={member.image} alt={member.imageAlt} />
+                </div>
+                <p class="team-role">{member.role}</p>
+                <h3>{member.name}</h3>
+                <p>{member.bio}</p>
+              </article>
+            ))
+          }
+        </div>
+      </section>
+    </div>
+  </div>
+</BaseLayout>

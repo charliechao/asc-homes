@@ -1,0 +1,254 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { projects } from "../../data/projects";
+
+export function getStaticPaths() {
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project }
+  }));
+}
+
+const { project } = Astro.props;
+const currentIndex = projects.findIndex((item) => item.slug === project.slug);
+const relatedProjects = Array.from({ length: Math.min(6, projects.length - 1) }, (_, offset) => {
+  const nextIndex = (currentIndex + offset + 1) % projects.length;
+  return projects[nextIndex];
+});
+const duplicatedRelatedProjects = [...relatedProjects, ...relatedProjects];
+const detailGallery = project.gallery;
+const galleryImages = JSON.stringify(detailGallery);
+---
+
+<BaseLayout title={`${project.title} | ASC Homes`} bodyClass="is-project-detail">
+  <div class="page-shell project-shell">
+    <div class="container">
+      <div class="project-layout">
+        <aside class="project-nav-dock" data-reveal>
+          <a class="project-dock-link" href="/our-work/" aria-label="Back to our work">
+            <span>Back</span>
+          </a>
+          <a class="project-dock-link" href="/" aria-label="Go to homepage">
+            <span>Home</span>
+          </a>
+        </aside>
+
+        <div class="project-main">
+          <section class="project-hero" data-reveal>
+            <div class="project-hero-copy">
+              <p class="panel-label">{project.year} / {project.location}</p>
+              <h1>{project.title}</h1>
+              <p class="intro-copy">{project.cardSummary}</p>
+              <p>{project.intro}</p>
+
+              <div class="project-hero-actions">
+                <a class="button primary" href="/contact-us/">Start a Project</a>
+                <a class="button secondary" href="/free-estimate/">Free Estimate</a>
+              </div>
+            </div>
+
+            <button
+              class="project-hero-image project-image-trigger"
+              type="button"
+              data-lightbox-index="0"
+              aria-label={`Open ${project.title} gallery`}
+            >
+              <img src={project.coverImage} alt={project.coverAlt} />
+            </button>
+          </section>
+
+          {
+            detailGallery.length > 1 && (
+              <section class="project-gallery" data-reveal>
+                <div class="section-heading">
+                  <p class="panel-label">Project Gallery</p>
+                  <h2>More from {project.title}.</h2>
+                </div>
+
+                <div class="project-gallery-grid">
+                  {detailGallery.slice(1).map((image, index) => (
+                    <button
+                      class="project-gallery-card project-image-trigger"
+                      type="button"
+                      data-lightbox-index={index + 1}
+                      aria-label={`Open gallery image ${index + 2}`}
+                    >
+                      <img src={image.src} alt={image.alt} />
+                    </button>
+                  ))}
+                </div>
+              </section>
+            )
+          }
+
+          <section class="project-related" data-reveal>
+            <div class="project-related-head">
+              <div class="section-heading">
+                <p class="panel-label">More Projects</p>
+                <h2>Continue through the portfolio.</h2>
+              </div>
+
+              <div class="related-controls">
+                <button class="related-arrow" type="button" data-related-prev aria-label="Previous projects">
+                  <span>&larr;</span>
+                </button>
+                <button class="related-arrow" type="button" data-related-next aria-label="Next projects">
+                  <span>&rarr;</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="related-rail" data-related-rail>
+              <div class="related-track">
+                {
+                  duplicatedRelatedProjects.map((item, index) => (
+                    <a
+                      class="related-card"
+                      href={`/our-work/${item.slug}/`}
+                      aria-hidden={index >= relatedProjects.length ? "true" : undefined}
+                      tabindex={index >= relatedProjects.length ? "-1" : undefined}
+                    >
+                      <div class="related-card-image">
+                        <img src={item.coverImage} alt={item.coverAlt} />
+                      </div>
+                      <div class="related-card-copy">
+                        <p>{item.location}</p>
+                        <h3>{item.title}</h3>
+                        <span>{item.cardSummary}</span>
+                      </div>
+                    </a>
+                  ))
+                }
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <dialog class="project-lightbox" data-project-lightbox>
+    <button class="project-lightbox-close" type="button" data-lightbox-close aria-label="Close gallery">
+      <span>&times;</span>
+    </button>
+    <button class="project-lightbox-arrow is-prev" type="button" data-lightbox-prev aria-label="Previous image">
+      <span>&larr;</span>
+    </button>
+    <figure class="project-lightbox-figure">
+      <img src={project.coverImage} alt={project.coverAlt} data-lightbox-image />
+    </figure>
+    <button class="project-lightbox-arrow is-next" type="button" data-lightbox-next aria-label="Next image">
+      <span>&rarr;</span>
+    </button>
+  </dialog>
+
+  <script define:vars={{ galleryImages }}>
+    const images = JSON.parse(galleryImages);
+    const lightbox = document.querySelector("[data-project-lightbox]");
+    const lightboxImage = document.querySelector("[data-lightbox-image]");
+    const openButtons = Array.from(document.querySelectorAll("[data-lightbox-index]"));
+    const closeButton = document.querySelector("[data-lightbox-close]");
+    const prevButton = document.querySelector("[data-lightbox-prev]");
+    const nextButton = document.querySelector("[data-lightbox-next]");
+    const relatedRail = document.querySelector("[data-related-rail]");
+    const prevRelated = document.querySelector("[data-related-prev]");
+    const nextRelated = document.querySelector("[data-related-next]");
+    let activeIndex = 0;
+    let isPaused = false;
+
+    const renderLightbox = () => {
+      const current = images[activeIndex];
+      if (!current || !lightboxImage) return;
+      lightboxImage.src = current.src;
+      lightboxImage.alt = current.alt;
+    };
+
+    const openLightbox = (index) => {
+      activeIndex = index;
+      renderLightbox();
+      if (lightbox instanceof HTMLDialogElement && !lightbox.open) {
+        lightbox.showModal();
+      }
+    };
+
+    openButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const index = Number(button.getAttribute("data-lightbox-index") || "0");
+        openLightbox(index);
+      });
+    });
+
+    closeButton?.addEventListener("click", () => {
+      if (lightbox instanceof HTMLDialogElement) {
+        lightbox.close();
+      }
+    });
+
+    lightbox?.addEventListener("click", (event) => {
+      if (event.target === lightbox && lightbox instanceof HTMLDialogElement) {
+        lightbox.close();
+      }
+    });
+
+    prevButton?.addEventListener("click", () => {
+      activeIndex = (activeIndex - 1 + images.length) % images.length;
+      renderLightbox();
+    });
+
+    nextButton?.addEventListener("click", () => {
+      activeIndex = (activeIndex + 1) % images.length;
+      renderLightbox();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (!(lightbox instanceof HTMLDialogElement) || !lightbox.open) return;
+      if (event.key === "Escape") {
+        lightbox.close();
+      }
+      if (event.key === "ArrowLeft") {
+        activeIndex = (activeIndex - 1 + images.length) % images.length;
+        renderLightbox();
+      }
+      if (event.key === "ArrowRight") {
+        activeIndex = (activeIndex + 1) % images.length;
+        renderLightbox();
+      }
+    });
+
+    const shiftRail = (direction) => {
+      if (!(relatedRail instanceof HTMLElement)) return;
+      relatedRail.scrollBy({
+        left: direction * 360,
+        behavior: "smooth"
+      });
+    };
+
+    prevRelated?.addEventListener("click", () => shiftRail(-1));
+    nextRelated?.addEventListener("click", () => shiftRail(1));
+
+    relatedRail?.addEventListener("mouseenter", () => {
+      isPaused = true;
+    });
+
+    relatedRail?.addEventListener("mouseleave", () => {
+      isPaused = false;
+    });
+
+    let lastTime = 0;
+    const autoScroll = (time) => {
+      if (relatedRail instanceof HTMLElement) {
+        if (!isPaused && time - lastTime > 24) {
+          relatedRail.scrollLeft += 0.5;
+          const resetPoint = relatedRail.scrollWidth / 2;
+          if (relatedRail.scrollLeft >= resetPoint) {
+            relatedRail.scrollLeft = 0;
+          }
+          lastTime = time;
+        }
+      }
+      window.requestAnimationFrame(autoScroll);
+    };
+
+    window.requestAnimationFrame(autoScroll);
+  </script>
+</BaseLayout>

@@ -1,0 +1,112 @@
+---
+import Web3Form from "../components/Web3Form.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Free Estimate | ASC Homes">
+  <div class="page-shell estimate-shell">
+    <div class="container">
+      <section class="estimate-hero">
+        <div class="estimate-copy">
+          <p class="panel-label">Free Estimate</p>
+          <h1>Share the brief and we will help shape the next step.</h1>
+          <p class="intro-copy">
+            This page is designed as the fuller project intake form for ASC
+            Homes. It is where the user should land from the main call-to-action
+            buttons on the contact route.
+          </p>
+        </div>
+      </section>
+
+      <section class="estimate-layout">
+        <div class="estimate-side-panel">
+          <p class="panel-label">What To Include</p>
+          <ul class="estimate-note-list">
+            <li>Site location or suburb</li>
+            <li>Type of project and scope</li>
+            <li>Approximate budget expectations</li>
+            <li>Desired timeline or target start date</li>
+            <li>Any key constraints, references, or special requirements</li>
+          </ul>
+        </div>
+
+        <Web3Form
+          formTitle="Project Enquiry"
+          formIntro="White text and caret styling are applied here to match the dark presentation requested in the brief."
+          submitLabel="Request Free Estimate"
+          subject="ASC Homes Free Estimate Request"
+          source="free-estimate-page"
+        >
+          <label class="form-field">
+            <span>Full Name</span>
+            <input type="text" name="name" autocomplete="name" required />
+          </label>
+
+          <label class="form-field">
+            <span>Email</span>
+            <input type="email" name="email" autocomplete="email" required />
+          </label>
+
+          <label class="form-field">
+            <span>Phone</span>
+            <input type="tel" name="phone" autocomplete="tel" required />
+          </label>
+
+          <label class="form-field">
+            <span>Site Location</span>
+            <input type="text" name="site_location" placeholder="Suburb or project address" />
+          </label>
+
+          <label class="form-field">
+            <span>Project Type</span>
+            <select name="project_type" required>
+              <option value="">Select a project type</option>
+              <option>New Build</option>
+              <option>Renovation</option>
+              <option>Extension</option>
+              <option>Design & Build</option>
+              <option>Subdivision</option>
+            </select>
+          </label>
+
+          <label class="form-field">
+            <span>Indicative Budget</span>
+            <select name="budget_range">
+              <option value="">Select a budget range</option>
+              <option>Under $500k</option>
+              <option>$500k - $1m</option>
+              <option>$1m - $2m</option>
+              <option>$2m+</option>
+            </select>
+          </label>
+
+          <label class="form-field">
+            <span>Preferred Timeline</span>
+            <select name="timeline">
+              <option value="">Select a timeline</option>
+              <option>Ready to start now</option>
+              <option>Within 3 months</option>
+              <option>Within 6 months</option>
+              <option>Planning for later</option>
+            </select>
+          </label>
+
+          <label class="form-field">
+            <span>How Did You Hear About Us?</span>
+            <input type="text" name="referral_source" />
+          </label>
+
+          <label class="form-field form-field-full">
+            <span>Project Details</span>
+            <textarea
+              name="message"
+              rows="7"
+              placeholder="Tell us about the vision, scope, site, design ideas, and anything else that would help us understand the project."
+              required
+            ></textarea>
+          </label>
+        </Web3Form>
+      </section>
+    </div>
+  </div>
+</BaseLayout>
