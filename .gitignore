@@ -7,4 +7,5 @@ npm-debug.log*
 .env
 .astro-dev.log
 .astro-dev.err.log
+.astro-preview.log
 desktop.ini

@@ -26,26 +26,43 @@ const isCurrent = (href: string) => {
       <img src="/brand/logo.png" alt={site.name} />
     </a>
 
-    <nav class="main-nav" aria-label="Primary navigation">
-      {
-        site.nav.map((item) => (
-          <a
-            href={item.href}
-            class:list={[
-              "nav-link",
-              item.featured && "is-featured",
-              isCurrent(item.href) && "is-current"
-            ]}
-          >
-            {item.label}
-          </a>
-        ))
-      }
-    </nav>
+    <button
+      class="nav-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="primary-navigation"
+      data-nav-toggle
+    >
+      <span class="sr-only">Menu</span>
+      <span class="nav-toggle-icon" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+    </button>
 
-    <a class="header-contact" href="/contact-us/">
-      Contact Us
-    </a>
+    <div class="header-panel" data-header-panel>
+      <nav class="main-nav" id="primary-navigation" aria-label="Primary navigation">
+        {
+          site.nav.map((item) => (
+            <a
+              href={item.href}
+              class:list={[
+                "nav-link",
+                item.featured && "is-featured",
+                isCurrent(item.href) && "is-current"
+              ]}
+            >
+              {item.label}
+            </a>
+          ))
+        }
+      </nav>
+
+      <a class="header-contact" href="/contact-us/">
+        Contact Us
+      </a>
+    </div>
   </div>
 </header>
 
@@ -60,4 +77,30 @@ const isCurrent = (href: string) => {
 
   syncHomeHeader();
   window.addEventListener("scroll", syncHomeHeader, { passive: true });
+
+  const header = document.querySelector("[data-site-header]");
+  const toggle = header?.querySelector("[data-nav-toggle]");
+  const panel = header?.querySelector("[data-header-panel]");
+  const links = panel ? Array.from(panel.querySelectorAll("a")) : [];
+
+  const closeMenu = () => {
+    if (!header || !toggle) return;
+    header.classList.remove("is-menu-open");
+    toggle.setAttribute("aria-expanded", "false");
+  };
+
+  toggle?.addEventListener("click", () => {
+    if (!header || !toggle) return;
+    const willOpen = !header.classList.contains("is-menu-open");
+    header.classList.toggle("is-menu-open", willOpen);
+    toggle.setAttribute("aria-expanded", String(willOpen));
+  });
+
+  links.forEach((link) => {
+    link.addEventListener("click", closeMenu);
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 720) closeMenu();
+  });
 </script>
