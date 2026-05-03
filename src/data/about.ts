@@ -83,6 +83,22 @@ export const teamMembers = [
     imageAlt: "Placeholder portrait for Mark Liu",
     bio:
       "A certified LBP carpenter with deep site and coordination experience, Mark keeps projects moving smoothly with strong attention to sequencing and quality."
+  },
+  {
+    name: "Yuan",
+    role: "Interior Design Consultant",
+    image: "/team/rainey-tian-placeholder.png",
+    imageAlt: "Placeholder portrait for Yuan",
+    bio:
+      "Specializing in interior design, Yuan helps translate creative visions into refined, execution-ready interior outcomes."
+  },
+  {
+    name: "Yuanyuan Zhang",
+    role: "Interior Design Consultant",
+    image: "/team/yuanyuan-zhang.png",
+    imageAlt: "Portrait of Yuanyuan Zhang",
+    bio:
+      "Specializing in interior design, Yuanyuan Zhang translates creative visions into refined, execution-ready spatial solutions."
   }
 ] as const;
 

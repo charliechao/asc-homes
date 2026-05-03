@@ -23,7 +23,7 @@ const isCurrent = (href: string) => {
 <header class="site-header" data-site-header>
   <div class="container shell">
     <a class="brand" href="/" aria-label={`${site.name} home`}>
-      <img src="/brand/logo.png" alt={site.name} />
+      <img src="/brand/logo-header-cropped.png" alt={site.name} />
     </a>
 
     <button
@@ -40,6 +40,30 @@ const isCurrent = (href: string) => {
         <span></span>
       </span>
     </button>
+
+    <details class="mobile-nav-details">
+      <summary aria-label="Open menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </summary>
+      <nav aria-label="Mobile navigation">
+        {
+          site.nav.map((item) => (
+            <a
+              href={item.href}
+              class:list={[
+                "nav-link",
+                item.featured && "is-featured",
+                isCurrent(item.href) && "is-current"
+              ]}
+            >
+              {item.label}
+            </a>
+          ))
+        }
+      </nav>
+    </details>
 
     <div class="header-panel" data-header-panel>
       <nav class="main-nav" id="primary-navigation" aria-label="Primary navigation">
@@ -58,10 +82,6 @@ const isCurrent = (href: string) => {
           ))
         }
       </nav>
-
-      <a class="header-contact" href="/contact-us/">
-        Contact Us
-      </a>
     </div>
   </div>
 </header>

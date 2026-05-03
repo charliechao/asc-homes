@@ -1,13 +1,19 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { site } from "../data/site";
-import {
-  featuredProjects,
-  partnerLinks,
-  processSteps,
-  storySection,
-  testimonials
-} from "../data/home";
+import { partnerLinks } from "../data/home";
+
+const clientReviews = [
+  {
+    quote:
+      "We were looking for a builder who could handle a technically demanding project, and ASC Homes delivered with precision and excellence. Their professionalism, problem-solving skills, and craftsmanship exceeded our expectations. We now have a home that is both stunning and structurally exceptional.",
+    client: "Chris & Laura"
+  },
+  {
+    quote:
+      "ASC Homes took on our complex project with confidence and delivered beyond our expectations. Their ability to navigate challenges while maintaining quality and efficiency was outstanding. Our home is not only beautiful but also built to the highest standard. We highly recommend them!",
+    client: "James & Olivia, Browns Bay"
+  }
+] as const;
 ---
 
 <BaseLayout
@@ -38,178 +44,98 @@ import {
 
     <div class="hero-overlay"></div>
 
-    <div class="container hero-content">
-      <div class="hero-copy" data-reveal>
-        <h1>
-          <span>Building</span>
-          <span>Excellence</span>
-        </h1>
-      </div>
-    </div>
-
     <a class="hero-scroll" href="#story" aria-label="Scroll to story section">
       <span></span>
     </a>
   </section>
 
   <div class="page-shell homepage-shell">
-    <div class="container">
-      <section class="story-section" id="story">
-        <div class="story-copy content-panel" data-reveal>
-          <p class="panel-label">{storySection.eyebrow}</p>
-          <div class="story-title">
-            <span>{storySection.title.lead}</span>
-            <span class="story-title-accent">{storySection.title.accent}</span>
-          </div>
-          <p class="intro-copy">
-            {storySection.intro}
-          </p>
-          <p>{storySection.body}</p>
+    <section class="home-reference-row home-reference-row-top" id="story">
+      <div class="home-reference-copy" data-reveal>
+        <h2>Beyond the Ordinary</h2>
+        <p>
+          Every home should be as unique as its owner. With a keen eye for
+          detail, custom-crafted fixtures, and innovative design.
+        </p>
+        <p>
+          From the initial concept to the final build, we work closely with
+          you and our expert architects to ensure every detail aligns with
+          your vision and lifestyle. Creating a home that suits you, inside
+          and out, is our top priority
+        </p>
+        <a class="home-reference-link" href="/our-work/">View Our Work</a>
+      </div>
 
-          <div class="story-flow">
-            {
-              storySection.flow.map((item) => (
-                <span class="story-flow-item">{item}</span>
-              ))
-            }
-          </div>
+      <div class="home-reference-image" data-reveal>
+        <img src="/projects/68-salamanca/d47d1010-dbac-4287-8f4d-cbd764e1c6bd.jpeg" alt="Open plan living area" />
+      </div>
+    </section>
 
-          <a class="story-arrow-link" href="#featured-projects">
-            Continue through our work
-          </a>
-        </div>
+    <section class="home-reference-row home-reference-row-bottom">
+      <div class="home-reference-image" data-reveal>
+        <img src="/projects/kewa-road/02.jpg" alt="Custom kitchen interior" />
+      </div>
 
-        <div class="story-gallery" data-reveal>
-          <article class="story-image-card is-large">
-            <img src="/home/kewa-road.jpg" alt="Kewa Road exterior" />
-          </article>
-          <article class="story-image-card">
-            <img src="/home/highland-road.jpg" alt="Highland Road interior" />
-          </article>
-        </div>
-      </section>
+      <div class="home-reference-copy" data-reveal>
+        <h2>What We Do</h2>
+        <p>
+          ASC Homes specializes in high-quality, architecturally driven
+          construction. From bespoke new builds to complex renovations, we
+          offer comprehensive in-house services to bring your vision to life.
+          With a strong focus on craftsmanship, efficiency, and seamless
+          project management, we ensure a smooth and rewarding building
+          experience for every client.
+        </p>
+        <a class="home-reference-link" href="/design-build/">Learn More</a>
+      </div>
+    </section>
 
-      <section class="process-section">
-        <div class="section-heading">
-          <p class="panel-label">Design &amp; Build</p>
-          <h2>A single team guiding the full journey.</h2>
-          <p class="intro-copy">
-            ASC Homes combines design thinking, technical coordination, and
-            construction delivery so every decision stays aligned from first
-            conversation to final handover.
-          </p>
-        </div>
+    <section class="home-client-experience" data-home-reviews>
+      <button class="testimonial-arrow" type="button" data-review-direction="-1" aria-label="Previous testimonial">
+        <span>&larr;</span>
+      </button>
 
-        <div class="process-grid">
+      <article class="home-client-quote">
+        <div class="home-client-track" data-home-review-track>
           {
-            processSteps.map((step) => (
-              <article class="process-card">
-                <span class="process-number">{step.number}</span>
-                <h3>{step.title}</h3>
-                <p>{step.description}</p>
-              </article>
+            clientReviews.map((review, index) => (
+              <div class="home-client-slide" aria-hidden={index === 0 ? "false" : "true"}>
+                <p class="home-client-stars">★★★★★</p>
+                <blockquote>"{review.quote}"</blockquote>
+                <p class="home-client-name">{review.client}</p>
+              </div>
             ))
           }
         </div>
-      </section>
-
-      <section class="featured-section" id="featured-projects">
-        <div class="section-heading">
-          <p class="panel-label">Featured Work</p>
-          <h2>Selected projects with strong architectural character.</h2>
-          <p class="intro-copy">
-            A first look at the project library, from crisp contemporary
-            exteriors to warm, finely detailed interiors.
-          </p>
+        <div class="home-client-dots" aria-label="Client review slides">
+          {
+            clientReviews.map((_, index) => (
+              <button
+                class:list={["home-client-dot", index === 0 && "is-active"]}
+                type="button"
+                data-review-dot={index}
+                aria-label={`Show review ${index + 1}`}
+              ></button>
+            ))
+          }
         </div>
+      </article>
 
-        <div class="featured-layout">
-          <a class="featured-primary" href={featuredProjects[0].href}>
-            <img
-              src={featuredProjects[0].image}
-              alt={`${featuredProjects[0].title} project`}
-            />
-            <div class="featured-overlay">
-              <p>{featuredProjects[0].year}</p>
-              <h3>{featuredProjects[0].title}</h3>
-              <span>{featuredProjects[0].detail}</span>
-            </div>
-          </a>
+      <button class="testimonial-arrow" type="button" data-review-direction="1" aria-label="Next testimonial">
+        <span>&rarr;</span>
+      </button>
+    </section>
 
-          <div class="featured-secondary">
-            {
-              featuredProjects.slice(1).map((project) => (
-                <article class="featured-card">
-                  <img src={project.image} alt={`${project.title} project`} />
-                  <div class="featured-card-copy">
-                    <p>{project.year}</p>
-                    <h3>{project.title}</h3>
-                    <span>{project.detail}</span>
-                  </div>
-                </article>
-              ))
-            }
-          </div>
-        </div>
-
-        <div class="section-actions">
-          <a class="button secondary" href="/our-work/">Explore all projects</a>
-        </div>
-      </section>
-
-      <section class="testimonial-section">
-        <div class="section-heading">
-          <p class="panel-label">Client Experience</p>
-          <h2>Built on trust, communication, and careful delivery.</h2>
-        </div>
-
-        <div class="testimonial-slider" data-testimonial-slider>
-          <button
-            class="testimonial-arrow"
-            type="button"
-            data-direction="-1"
-            aria-label="Previous testimonial"
-          >
-            <span>&larr;</span>
-          </button>
-
-          <div class="testimonial-viewport">
-            <div class="testimonial-track" data-testimonial-track>
-              {
-                testimonials.map((item) => (
-                  <article class="testimonial-card testimonial-slide">
-                    <p class="testimonial-quote">"{item.quote}"</p>
-                    <p class="testimonial-client">{item.client}</p>
-                  </article>
-                ))
-              }
-            </div>
-          </div>
-
-          <button
-            class="testimonial-arrow"
-            type="button"
-            data-direction="1"
-            aria-label="Next testimonial"
-          >
-            <span>&rarr;</span>
-          </button>
-        </div>
-      </section>
-
-      <section class="partner-section">
-        <div class="section-heading">
-          <p class="panel-label">Trusted Connections</p>
-          <h2>Selected collaborators and industry references.</h2>
-        </div>
-
-        <div class="partner-strip">
+    <section class="home-trusted-logos" aria-label="Trusted connections">
+      <div class="container">
+        <div class="partner-strip home-logo-strip">
           {
             partnerLinks.map((partner) => (
               <a
                 class:list={[
                   "partner-chip",
-                  partner.label === "Master Builders NZ" && "is-centered-logo"
+                  "is-centered-logo",
+                  partner.label === "Master Builders NZ" && "is-compact-logo"
                 ]}
                 href={partner.href}
                 target="_blank"
@@ -217,34 +143,19 @@ import {
                 aria-label={partner.label}
               >
                 <span class="partner-logo-wrap">
-                  <img src={partner.image} alt={partner.imageAlt} class="partner-logo-image" />
+                  <img
+                    class="partner-logo-image"
+                    src={partner.image}
+                    alt={partner.imageAlt}
+                    loading="lazy"
+                  />
                 </span>
-                <span class="partner-chip-arrow">&nearr;</span>
               </a>
             ))
           }
         </div>
-      </section>
-
-      <section class="cta-section">
-        <div class="cta-panel">
-          <div>
-            <p class="panel-label">Ready to Start</p>
-            <h2>Bring your next home to life with ASC Homes.</h2>
-            <p class="intro-copy">
-              Talk to the team about a bespoke new build, renovation, or design
-              and build project.
-            </p>
-          </div>
-
-          <div class="cta-actions">
-            <a class="button primary" href={site.contact.phoneHref}>Call Us</a>
-            <a class="button secondary" href="/free-estimate/">Free Estimate</a>
-            <a class="button secondary" href={`mailto:${site.contact.email}`}>Email Us</a>
-          </div>
-        </div>
-      </section>
-    </div>
+      </div>
+    </section>
   </div>
 </BaseLayout>
 
@@ -269,51 +180,6 @@ import {
     reveals.forEach((item) => item.classList.add("is-visible"));
   }
 
-  const sliders = document.querySelectorAll("[data-testimonial-slider]");
-
-  sliders.forEach((slider) => {
-    const track = slider.querySelector("[data-testimonial-track]");
-    const slides = track ? Array.from(track.children) : [];
-    const buttons = Array.from(
-      slider.querySelectorAll("[data-direction]")
-    );
-
-    if (!track || slides.length === 0) return;
-
-    let index = 0;
-    let timer;
-
-    const update = () => {
-      track.style.transform = `translateX(-${index * 100}%)`;
-    };
-
-    const goTo = (nextIndex) => {
-      index = (nextIndex + slides.length) % slides.length;
-      update();
-    };
-
-    const start = () => {
-      window.clearInterval(timer);
-      timer = window.setInterval(() => {
-        goTo(index + 1);
-      }, 5200);
-    };
-
-    buttons.forEach((button) => {
-      button.addEventListener("click", () => {
-        const direction = Number(button.dataset.direction || "1");
-        goTo(index + direction);
-        start();
-      });
-    });
-
-    slider.addEventListener("mouseenter", () => window.clearInterval(timer));
-    slider.addEventListener("mouseleave", start);
-
-    update();
-    start();
-  });
-
   const heroVideo = document.querySelector("[data-hero-video]");
 
   if (heroVideo instanceof HTMLVideoElement) {
@@ -327,5 +193,51 @@ import {
       heroVideo.addEventListener("loadeddata", revealVideo, { once: true });
       heroVideo.addEventListener("canplay", revealVideo, { once: true });
     }
+  }
+
+  const reviewSection = document.querySelector("[data-home-reviews]");
+
+  if (reviewSection) {
+    const slides = Array.from(reviewSection.querySelectorAll(".home-client-slide"));
+    const dots = Array.from(reviewSection.querySelectorAll("[data-review-dot]"));
+    const buttons = Array.from(reviewSection.querySelectorAll("[data-review-direction]"));
+    let index = 0;
+    let timer;
+
+    const setReview = (nextIndex) => {
+      index = (nextIndex + slides.length) % slides.length;
+
+      slides.forEach((slide, slideIndex) => {
+        const isActive = slideIndex === index;
+        slide.classList.toggle("is-active", isActive);
+        slide.setAttribute("aria-hidden", String(!isActive));
+      });
+
+      dots.forEach((dot, dotIndex) => {
+        dot.classList.toggle("is-active", dotIndex === index);
+      });
+    };
+
+    const startReviews = () => {
+      window.clearInterval(timer);
+      timer = window.setInterval(() => setReview(index + 1), 6000);
+    };
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        setReview(index + Number(button.dataset.reviewDirection || "1"));
+        startReviews();
+      });
+    });
+
+    dots.forEach((dot) => {
+      dot.addEventListener("click", () => {
+        setReview(Number(dot.dataset.reviewDot || "0"));
+        startReviews();
+      });
+    });
+
+    setReview(0);
+    startReviews();
   }
 </script>
