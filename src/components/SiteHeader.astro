@@ -41,30 +41,6 @@ const isCurrent = (href: string) => {
       </span>
     </button>
 
-    <details class="mobile-nav-details">
-      <summary aria-label="Open menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </summary>
-      <nav aria-label="Mobile navigation">
-        {
-          site.nav.map((item) => (
-            <a
-              href={item.href}
-              class:list={[
-                "nav-link",
-                item.featured && "is-featured",
-                isCurrent(item.href) && "is-current"
-              ]}
-            >
-              {item.label}
-            </a>
-          ))
-        }
-      </nav>
-    </details>
-
     <div class="header-panel" data-header-panel>
       <nav class="main-nav" id="primary-navigation" aria-label="Primary navigation">
         {
