@@ -29,7 +29,7 @@ html {
 body {
   margin: 0;
   min-width: 320px;
-  font-family: "Manrope", sans-serif;
+  font-family: "Archivo", sans-serif;
   color: var(--text);
   background:
     radial-gradient(circle at top left, rgba(204, 176, 122, 0.12), transparent 28%),
@@ -263,9 +263,9 @@ h4,
 h5,
 h6 {
   margin: 0;
-  font-family: "Cormorant Garamond", serif;
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  font-family: "Archivo", sans-serif;
+  font-weight: 800;
+  letter-spacing: 0;
 }
 
 h1 {
@@ -1531,10 +1531,11 @@ p {
 .story-title {
   display: grid;
   gap: 0.2rem;
-  font-family: "Cormorant Garamond", serif;
+  font-family: "Archivo", sans-serif;
+  font-weight: 800;
   font-size: clamp(2.9rem, 7vw, 6rem);
   line-height: 0.9;
-  letter-spacing: -0.04em;
+  letter-spacing: 0;
 }
 
 .story-title-accent {
@@ -2408,7 +2409,7 @@ p {
 }
 
 body {
-  font-family: "Archivo", "Manrope", sans-serif;
+  font-family: "Archivo", sans-serif;
   background: #0b0a08;
 }
 
@@ -2418,9 +2419,9 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Archivo", "Manrope", sans-serif;
+  font-family: "Archivo", sans-serif;
   font-weight: 800;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
 }
 
 p,
@@ -2429,7 +2430,7 @@ button,
 input,
 select,
 textarea {
-  font-family: "Archivo", "Manrope", sans-serif;
+  font-family: "Archivo", sans-serif;
 }
 
 .site-header .shell {
