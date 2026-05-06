@@ -25,9 +25,7 @@ const getDisplayTitle = (title: string) => title.replace(/^\d+\s+/, "");
             >
               <img src={project.coverImage} alt={project.coverAlt} />
               <div class="portfolio-composition-overlay">
-                <p>{String(index + 1).padStart(2, "0")} / {project.location}</p>
                 <h2>{getDisplayTitle(project.title)}</h2>
-                <strong>{project.year}</strong>
               </div>
             </a>
           ))

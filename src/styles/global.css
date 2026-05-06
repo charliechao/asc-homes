@@ -2595,7 +2595,7 @@ textarea {
   gap: 1rem;
   padding: 1.5rem;
   background: #12100d;
-  border-left: 4px solid var(--accent-deep);
+  border-bottom: 4px solid var(--accent-deep);
 }
 
 .home-process-line {
@@ -2665,6 +2665,8 @@ textarea {
 
 .portfolio-transition {
   padding-bottom: 0;
+  justify-items: center;
+  text-align: center;
 }
 
 .portfolio-square-grid {
@@ -3452,7 +3454,7 @@ textarea {
   }
 }
 
-@media (max-width: 820px) {
+@media (max-width: 939px) {
   .mobile-nav-details,
   .mobile-nav-floating {
     display: none !important;
@@ -3467,6 +3469,7 @@ textarea {
     grid-template-columns: minmax(0, 1fr) auto;
     gap: 0.75rem;
     padding: calc(0.45rem + env(safe-area-inset-top, 0px)) 0 0.45rem;
+    position: relative;
   }
 
   .brand {
@@ -3510,14 +3513,21 @@ textarea {
   }
 
   .header-panel {
+    position: absolute;
     top: calc(100% + 0.15rem);
     left: 0;
     right: 0;
+    display: none;
+    grid-template-columns: 1fr;
     padding: 0.75rem;
     border-radius: 0;
     background: rgba(8, 7, 6, 0.97);
     border: 1px solid rgba(211, 154, 74, 0.22);
     box-shadow: 0 22px 46px rgba(0, 0, 0, 0.42);
+  }
+
+  .site-header.is-menu-open .header-panel {
+    display: grid;
   }
 
   .main-nav {
