@@ -2783,19 +2783,21 @@ textarea {
   z-index: 1;
   display: grid;
   place-items: center;
-  width: min(calc(100% - 2rem), 920px);
+  width: min(calc(100% - 2rem), 1100px);
   text-align: center;
 }
 
 .design-build-video-title h1 {
   color: #fff7e8;
-  font-size: clamp(3.4rem, 8vw, 8rem);
+  font-size: clamp(2.8rem, 7vw, 6.5rem);
   line-height: 0.95;
   text-transform: uppercase;
+  word-spacing: 0.16em;
 }
 
 .design-build-video-title h1 span {
   display: block;
+  white-space: nowrap;
 }
 
 .design-build-shell {
