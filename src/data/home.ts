@@ -8,27 +8,27 @@ export const homeStats = [
 export const processSteps = [
   {
     number: "01",
-    title: "Brief and feasibility",
+    title: "Initial Consultation",
     description:
-      "We begin by understanding the way you want to live, the site constraints, and the commercial realities behind the brief."
+      "We begin by understanding your project goals, lifestyle requirements, budget, and site conditions. This early stage allows us to provide strategic guidance and establish a clear direction for the project."
   },
   {
     number: "02",
-    title: "Design coordination",
+    title: "Feasibility & Design Planning",
     description:
-      "ASC Homes works closely with architects, consultants, and trusted specialists to shape a coherent design direction from the outset."
+      "Our team works closely with architects, designers, and consultants to explore design opportunities, site constraints, and planning requirements. We focus on developing practical and well considered solutions that align with both your vision and budget expectations."
   },
   {
     number: "03",
-    title: "Build delivery",
+    title: "Design & Project Coordination",
     description:
-      "Our in-house team manages craftsmanship, sequencing, subcontractor coordination, and quality throughout construction."
+      "Once the concept direction is confirmed, we coordinate the design development, documentation, council approvals, and project planning process. Throughout this stage, we maintain clear communication and detailed coordination to ensure a smooth transition into construction."
   },
   {
     number: "04",
-    title: "Completion and handover",
+    title: "Construction & Completion",
     description:
-      "We focus on the final details, ensuring the completed home feels refined, resolved, and ready to live in."
+      "Our construction team manages the full build process, including site supervision, scheduling, quality control, and project delivery. Upon completion, we oversee final inspections and detailing to ensure the finished home is delivered to a high standard and ready for handover."
   }
 ] as const;
 
@@ -101,27 +101,23 @@ export const testimonials = [
 
 export const partnerLinks = [
   {
-    label: "Jones Architects",
-    href: "https://jonesarchitects.co.nz/",
-    image: "/partners/jones-architects.svg",
-    imageAlt: "Jones Architects placeholder logo"
+    label: "ADNZ",
+    image: "/partners/adnz-logo-white.png",
+    imageAlt: "Architectural Designers New Zealand logo"
   },
   {
-    label: "Hannah Warren Interiors",
-    href: "https://www.hannahwarren.co.nz/",
-    image: "/partners/hannah-warren.webp",
-    imageAlt: "Hannah Warren Interiors logo"
+    label: "Licensed Builder",
+    image: "/partners/licensed-builder.avif",
+    imageAlt: "Licensed Builder logo"
   },
   {
     label: "Master Builders NZ",
-    href: "https://www.masterbuilder.org.nz/",
     image: "/partners/master-builders.png",
     imageAlt: "Master Builders logo"
   },
   {
-    label: "Licensed Building Practitioners",
-    href: "https://www.lbp.govt.nz/",
-    image: "/partners/licensed-building-practitioners.png",
-    imageAlt: "Licensed Building Practitioners logo"
+    label: "Site Safe Member",
+    image: "/partners/site-safe-member.jpg",
+    imageAlt: "Site Safe Member logo"
   }
 ] as const;

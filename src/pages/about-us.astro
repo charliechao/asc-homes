@@ -2,7 +2,6 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import {
   companyStory,
-  serviceList,
   teamMembers
 } from "../data/about";
 ---
@@ -13,41 +12,19 @@ import {
       <section class="interior-hero about-opening">
         <div class="interior-hero-copy">
           <h1>About Us</h1>
-          <p class="intro-copy">{companyStory.intro}</p>
+          <div class="intro-copy">
+            {companyStory.intro.map((paragraph) => <p>{paragraph}</p>)}
+          </div>
         </div>
 
         <div class="interior-hero-image">
-          <img src="/home/highland-road.jpg" alt="ASC Homes interior detail" />
-        </div>
-      </section>
-
-      <section class="about-story-band">
-        <div class="about-story-image">
-          <img src="/home/kewa-road.jpg" alt="ASC Homes exterior project" />
-        </div>
-        <div>
-          <h2>Our Story</h2>
-          <p>{companyStory.body}</p>
-        </div>
-      </section>
-
-      <section class="about-services">
-        <div class="section-heading">
-          <h2>What We Do</h2>
-        </div>
-
-        <div class="service-pill-grid">
-          {
-            serviceList.map((service) => (
-              <div class="service-pill">{service}</div>
-            ))
-          }
+          <img src="/home/about-us-construction.jpg" alt="ASC Homes construction project in progress" />
         </div>
       </section>
 
       <section class="about-team">
         <div class="section-heading">
-          <h2>Our Team</h2>
+          <h2>OUR TEAM</h2>
         </div>
 
         <div class="team-grid">
@@ -59,7 +36,9 @@ import {
                 </div>
                 <p class="team-role">{member.role}</p>
                 <h3>{member.name}</h3>
-                <p>{member.bio}</p>
+                <div class="team-bio">
+                  {member.bio.split("\n\n").map((paragraph) => <p>{paragraph}</p>)}
+                </div>
               </article>
             ))
           }

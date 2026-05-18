@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { serviceList } from "../data/about";
 import { partnerLinks } from "../data/home";
 
 const clientReviews = [
@@ -52,7 +53,7 @@ const clientReviews = [
   <div class="page-shell homepage-shell">
     <section class="home-reference-row home-reference-row-top" id="story">
       <div class="home-reference-copy" data-reveal>
-        <h2>Beyond the Ordinary</h2>
+        <h2>BEYOND THE ORDINARY</h2>
         <p>
           Every home should be as unique as its owner. With a keen eye for
           detail, custom-crafted fixtures, and innovative design.
@@ -67,25 +68,24 @@ const clientReviews = [
       </div>
 
       <div class="home-reference-image" data-reveal>
-        <img src="/projects/68-salamanca/d47d1010-dbac-4287-8f4d-cbd764e1c6bd.jpeg" alt="Open plan living area" />
+        <img src="/home/beyond-the-ordinary.jpg" alt="Architectural home at dusk" />
       </div>
     </section>
 
     <section class="home-reference-row home-reference-row-bottom">
       <div class="home-reference-image" data-reveal>
-        <img src="/projects/kewa-road/02.jpg" alt="Custom kitchen interior" />
+        <img src="/home/what-we-do.jpg" alt="ASC Homes construction project with scaffolding" />
       </div>
 
       <div class="home-reference-copy" data-reveal>
         <h2>What We Do</h2>
-        <p>
-          ASC Homes specializes in high-quality, architecturally driven
-          construction. From bespoke new builds to complex renovations, we
-          offer comprehensive in-house services to bring your vision to life.
-          With a strong focus on craftsmanship, efficiency, and seamless
-          project management, we ensure a smooth and rewarding building
-          experience for every client.
-        </p>
+        <ul class="about-service-list">
+          {
+            serviceList.map((service) => (
+              <li>{service}</li>
+            ))
+          }
+        </ul>
         <a class="home-reference-link" href="/design-build/">Learn More</a>
       </div>
     </section>
@@ -131,16 +131,16 @@ const clientReviews = [
         <div class="partner-strip home-logo-strip">
           {
             partnerLinks.map((partner) => (
-              <a
+              <div
                 class:list={[
                   "partner-chip",
                   "is-centered-logo",
-                  partner.label === "Master Builders NZ" && "is-compact-logo"
+                  partner.label === "Master Builders NZ" && "is-compact-logo",
+                  partner.label === "Site Safe Member" && "is-tall-logo",
+                  partner.label === "ADNZ" && "is-adnz-logo"
                 ]}
-                href={partner.href}
-                target="_blank"
-                rel="noreferrer"
-                aria-label={partner.label}
+                role="img"
+                aria-label={partner.imageAlt}
               >
                 <span class="partner-logo-wrap">
                   <img
@@ -150,7 +150,7 @@ const clientReviews = [
                     loading="lazy"
                   />
                 </span>
-              </a>
+              </div>
             ))
           }
         </div>

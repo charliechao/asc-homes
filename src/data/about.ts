@@ -1,8 +1,11 @@
 export const companyStory = {
   eyebrow: "About ASC Homes",
   title: "A design-led residential builder with a detail-first approach.",
-  intro:
-    "ASC Homes brings together architectural thinking, project management, and high-quality construction into one calm, coordinated process.",
+  intro: [
+    "ASC Homes brings together architecture, construction, interior design, and project management through one integrated delivery process.",
+    "We specialise in thoughtfully designed residential projects that balance aesthetics, functionality, and build quality creating homes that are both refined and practical for modern living.",
+    "From early planning through to final completion, our team focuses on delivering a smooth, transparent, and detail driven experience for every client."
+  ],
   body:
     "With more than a decade of experience across bespoke homes, renovations, and technically demanding residential projects, the team focuses on delivering spaces that feel refined, functional, and deeply resolved."
 } as const;
@@ -42,63 +45,63 @@ export const whyChooseUs = [
 
 export const serviceList = [
   "Architectural Design",
-  "Bespoke Home Design & Build",
-  "Renovations & Extensions",
+  "Bespoke Design & Build",
+  "Multi-Unit Developments",
   "Construction",
-  "Subdivisions",
+  "Renovations & Extensions",
   "Project Management",
-  "Property Development Consulting",
-  "Subcontractor Coordination & Quality Control"
+  "Interior Design Coordination",
+  "Development Consulting"
 ] as const;
 
 export const teamMembers = [
   {
     name: "Carl Wang",
     role: "Managing Director",
-    image: "/team/carl-wang-placeholder.png",
-    imageAlt: "Placeholder portrait for Carl Wang",
+    image: "/team/carl-wang.jpg",
+    imageAlt: "Portrait of Carl Wang",
     bio:
-      "With more than a decade in building design, construction, and project management, Carl leads ASC Homes with a focus on precision, delivery, and client trust."
+      "With over 15 years of experience in residential construction and project management, Carl leads ASC Homes with a strong focus on quality, efficiency, and client satisfaction. From design through to construction delivery, he has successfully managed a wide range of residential developments across Auckland."
+  },
+  {
+    name: "Richard Liu",
+    role: "Senior Architect",
+    image: "/team/richard-liu.jpg",
+    imageAlt: "Portrait of Richard Liu",
+    bio:
+      "Led by Richard Liu, our studio strikes a refined balance between pragmatism and creativity underpinned by strong technical expertise, thoughtful problem-solving, and an optimistic approach to design. Richard is a strategic thinker who embraces every challenge with depth and curiosity, from complex subdivision planning and consenting strategies through to the finest architectural detailing.\n\nTogether with our wider team of talented architects and designers, we carefully craft highly liveable, functional, and memorable environments that enrich the way people live, connect, and experience everyday life. Every project is approached with a commitment to clarity, buildability, design integrity, and long-term value."
   },
   {
     name: "Rainey Tian",
-    role: "Business Development Manager",
-    image: "/team/rainey-tian-placeholder.png",
-    imageAlt: "Placeholder portrait for Rainey Tian",
+    role: "Business Development Manager / Interior Design",
+    image: "/team/rainey-tian.jpg",
+    imageAlt: "Portrait of Rainey Tian",
     bio:
-      "Rainey brings a strong background in interior design, real estate, and client relationship management, helping projects stay aligned with both commercial and lifestyle goals."
-  },
-  {
-    name: "Kangnan Wang",
-    role: "Senior Architect",
-    image: "/team/kangnan-wang-placeholder.png",
-    imageAlt: "Placeholder portrait for Kangnan Wang",
-    bio:
-      "Known for high-end residential design, Kangnan balances bold architectural ideas with practical execution and approval-ready design coordination."
-  },
-  {
-    name: "Mark Liu",
-    role: "Project Manager",
-    image: "/team/mark-liu-placeholder.png",
-    imageAlt: "Placeholder portrait for Mark Liu",
-    bio:
-      "A certified LBP carpenter with deep site and coordination experience, Mark keeps projects moving smoothly with strong attention to sequencing and quality."
-  },
-  {
-    name: "Yuan",
-    role: "Interior Design Consultant",
-    image: "/team/rainey-tian-placeholder.png",
-    imageAlt: "Placeholder portrait for Yuan",
-    bio:
-      "Specializing in interior design, Yuan helps translate creative visions into refined, execution-ready interior outcomes."
+      "With over 10 years of experience in interior design and property sales, Rainey brings a strong balance of creativity, communication, and business development expertise. Her client-focused approach and understanding of luxury residential design help deliver personalised experiences and strengthen ASC Homes' presence in Auckland's premium housing market."
   },
   {
     name: "Yuanyuan Zhang",
     role: "Interior Design Consultant",
-    image: "/team/yuanyuan-zhang.png",
+    image: "/team/yuanyuan-zhang.jpg",
     imageAlt: "Portrait of Yuanyuan Zhang",
     bio:
       "Specializing in interior design, Yuanyuan Zhang translates creative visions into refined, execution-ready spatial solutions."
+  },
+  {
+    name: "Mark Liu",
+    role: "Project Manager / Lead Carpenter",
+    image: "/team/mark-liu.jpg",
+    imageAlt: "Portrait of Mark Liu",
+    bio:
+      "Mark is an experienced LBP carpenter with over 25 years in the construction industry, specialising in site management and carpentry team leadership. His hands-on experience and strong coordination skills ensure projects are delivered smoothly, efficiently, and with close attention to quality at every stage."
+  },
+  {
+    name: "Luke Liu",
+    role: "Site Supervisor / LBP Carpenter",
+    image: "/team/luke-liu.jpg",
+    imageAlt: "Portrait of Luke Liu",
+    bio:
+      "With over 10 years of experience in residential construction, Luke is a Licensed Building Practitioner (LBP) specialising in on-site coordination and quality workmanship. He works closely with the construction team to ensure projects are delivered efficiently, safely, and to a high standard."
   }
 ] as const;
 

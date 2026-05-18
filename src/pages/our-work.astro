@@ -13,7 +13,7 @@ const getDisplayTitle = (title: string) => title.replace(/^\d+\s+/, "");
   <div class="page-shell portfolio-shell">
     <div class="container">
       <section class="portfolio-transition">
-        <h1>Our Work</h1>
+        <h1>OUR WORK</h1>
       </section>
 
       <section class="portfolio-composition portfolio-square-grid">
@@ -25,6 +25,7 @@ const getDisplayTitle = (title: string) => title.replace(/^\d+\s+/, "");
             >
               <img src={project.coverImage} alt={project.coverAlt} />
               <div class="portfolio-composition-overlay">
+                {project.suburb && <p class="portfolio-suburb">{project.suburb}</p>}
                 <h2>{getDisplayTitle(project.title)}</h2>
               </div>
             </a>
