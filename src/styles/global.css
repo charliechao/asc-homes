@@ -2643,7 +2643,7 @@ textarea {
   gap: 0.75rem;
   margin: 0;
   padding-left: 1.25rem;
-  color: var(--text);
+  color: var(--muted);
   line-height: 1.55;
 }
 
