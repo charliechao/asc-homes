@@ -85,15 +85,6 @@ const galleryImages = JSON.stringify(detailGallery);
                 <p class="panel-label">More Projects</p>
                 <h2>Continue through the portfolio.</h2>
               </div>
-
-              <div class="related-controls">
-                <button class="related-arrow" type="button" data-related-prev aria-label="Previous projects">
-                  <span>&larr;</span>
-                </button>
-                <button class="related-arrow" type="button" data-related-next aria-label="Next projects">
-                  <span>&rarr;</span>
-                </button>
-              </div>
             </div>
 
             <div class="related-rail" data-related-rail>
@@ -149,8 +140,6 @@ const galleryImages = JSON.stringify(detailGallery);
     const prevButton = document.querySelector("[data-lightbox-prev]");
     const nextButton = document.querySelector("[data-lightbox-next]");
     const relatedRail = document.querySelector("[data-related-rail]");
-    const prevRelated = document.querySelector("[data-related-prev]");
-    const nextRelated = document.querySelector("[data-related-next]");
     let activeIndex = 0;
     let isPaused = false;
 
@@ -212,17 +201,6 @@ const galleryImages = JSON.stringify(detailGallery);
         renderLightbox();
       }
     });
-
-    const shiftRail = (direction) => {
-      if (!(relatedRail instanceof HTMLElement)) return;
-      relatedRail.scrollBy({
-        left: direction * 360,
-        behavior: "smooth"
-      });
-    };
-
-    prevRelated?.addEventListener("click", () => shiftRail(-1));
-    nextRelated?.addEventListener("click", () => shiftRail(1));
 
     relatedRail?.addEventListener("mouseenter", () => {
       isPaused = true;

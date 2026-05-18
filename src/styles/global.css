@@ -1379,40 +1379,6 @@ p {
   justify-content: space-between;
 }
 
-.related-controls {
-  display: flex;
-  gap: 0.7rem;
-  margin-bottom: 1.4rem;
-}
-
-.related-arrow {
-  display: grid;
-  place-items: center;
-  width: 48px;
-  aspect-ratio: 1;
-  border-radius: 999px;
-  border: 1px solid rgba(204, 176, 122, 0.18);
-  background: rgba(255, 255, 255, 0.02);
-  color: var(--copy);
-  transition:
-    transform 200ms ease,
-    border-color 200ms ease,
-    background-color 200ms ease,
-    box-shadow 200ms ease;
-}
-
-.related-arrow:hover,
-.related-arrow:focus-visible {
-  transform: translateY(-2px);
-  border-color: rgba(223, 196, 143, 0.3);
-  background: rgba(255, 255, 255, 0.06);
-  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.22);
-}
-
-.related-arrow:active {
-  transform: translateY(0) scale(0.985);
-}
-
 .related-rail {
   overflow: auto hidden;
   scrollbar-width: none;
@@ -1915,7 +1881,6 @@ p {
 .nav-toggle:focus-visible,
 .header-contact:focus-visible,
 .project-dock-link:focus-visible,
-.related-arrow:focus-visible,
 .story-arrow-link:focus-visible,
 .testimonial-arrow:focus-visible {
   outline: none;
@@ -1923,7 +1888,6 @@ p {
 
 .button:disabled,
 .nav-toggle:disabled,
-.related-arrow:disabled,
 .testimonial-arrow:disabled {
   cursor: not-allowed;
   opacity: 0.6;
@@ -2411,10 +2375,6 @@ p {
   .project-related-head {
     align-items: start;
     flex-direction: column;
-  }
-
-  .related-controls {
-    margin-bottom: 0;
   }
 
   .project-lightbox-close {
