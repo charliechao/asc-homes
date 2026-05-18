@@ -2648,7 +2648,7 @@ textarea {
 }
 
 .design-feature-copy p {
-  color: var(--text);
+  color: var(--muted);
 }
 
 .about-service-list li::marker {
