@@ -2612,7 +2612,7 @@ textarea {
   align-content: center;
   gap: 1rem;
   padding: 1.5rem;
-  background: #12100d;
+  background: transparent;
   border-bottom: 4px solid var(--accent-deep);
 }
 
@@ -2784,7 +2784,7 @@ textarea {
 .interior-hero-copy {
   padding: 1.6rem;
   border-left: 4px solid var(--accent-deep);
-  background: #12100d;
+  background: transparent;
 }
 
 .interior-hero-image {
@@ -3218,7 +3218,7 @@ textarea {
   max-width: 620px;
   width: min(100%, 620px);
   padding: clamp(3rem, 7vw, 7rem) clamp(2rem, 6vw, 7rem);
-  background: #12100d;
+  background: transparent;
 }
 
 .home-reference-row-top .home-reference-copy {
