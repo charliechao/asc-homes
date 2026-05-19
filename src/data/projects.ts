@@ -30,6 +30,7 @@ const projectMeta: ProjectMeta[] = [
     title: "Weiti Bay",
     year: "2025",
     location: "Auckland",
+    suburb: "Weiti Bay",
     cardSummary:
       "Design, Build & Project Management | 2025",
     intro:

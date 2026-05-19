@@ -6,7 +6,7 @@ const showcaseProjects = projects.slice(0, 7);
 const libraryProjects = projects.slice(7);
 const allProjects = [...showcaseProjects, ...libraryProjects];
 
-const getDisplayTitle = (title: string) => title.replace(/^\d+\s+/, "");
+const getProjectArea = (project: (typeof projects)[number]) => project.suburb || project.location;
 ---
 
 <BaseLayout title="Our Work | ASC Homes">
@@ -25,8 +25,7 @@ const getDisplayTitle = (title: string) => title.replace(/^\d+\s+/, "");
             >
               <img src={project.coverImage} alt={project.coverAlt} />
               <div class="portfolio-composition-overlay">
-                {project.suburb && <p class="portfolio-suburb">{project.suburb}</p>}
-                <h2>{getDisplayTitle(project.title)}</h2>
+                <p class="portfolio-suburb">{getProjectArea(project)}</p>
               </div>
             </a>
           ))

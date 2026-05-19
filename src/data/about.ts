@@ -65,11 +65,11 @@ export const teamMembers = [
   },
   {
     name: "Richard Liu",
-    role: "Senior Architect",
+    role: "Design Lead",
     image: "/team/richard-liu.jpg",
     imageAlt: "Portrait of Richard Liu",
     bio:
-      "Led by Richard Liu, our studio strikes a refined balance between pragmatism and creativity underpinned by strong technical expertise, thoughtful problem-solving, and an optimistic approach to design. Richard is a strategic thinker who embraces every challenge with depth and curiosity, from complex subdivision planning and consenting strategies through to the finest architectural detailing.\n\nTogether with our wider team of talented architects and designers, we carefully craft highly liveable, functional, and memorable environments that enrich the way people live, connect, and experience everyday life. Every project is approached with a commitment to clarity, buildability, design integrity, and long-term value."
+      "Led by strategic thinker Richard Liu, our studio strikes a refined balance between pragmatism and creativity. Underpinned by strong technical expertise and thoughtful problem-solving, Richard and our talented team craft highly functional, memorable environments. Their commitment to design integrity and buildability ensures every project enriches the way people live and connect while delivering long-term value."
   },
   {
     name: "Rainey Tian",
@@ -81,11 +81,11 @@ export const teamMembers = [
   },
   {
     name: "Yuanyuan Zhang",
-    role: "Interior Design Consultant",
+    role: "Interior Designer",
     image: "/team/yuanyuan-zhang.jpg",
     imageAlt: "Portrait of Yuanyuan Zhang",
     bio:
-      "Specializing in interior design, Yuanyuan Zhang translates creative visions into refined, execution-ready spatial solutions."
+      "With a solid background in Spatial and Interior Design, Yuanyuan Zhang brings a refined eye for detail and a strong technical grounding to the team. Specialising in space planning and digital illustration, they support the studio by translating creative concepts into precise, functional realities. Yuanyuan Zhang's fresh perspective and dedication to design integrity help deliver thoughtful, tailored environments for our clients."
   },
   {
     name: "Mark Liu",
