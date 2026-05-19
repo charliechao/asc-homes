@@ -2737,6 +2737,8 @@ textarea {
 .portfolio-transition h1 {
   width: fit-content;
   padding-bottom: 0.35rem;
+  font-size: clamp(2.1rem, 4vw, 3.4rem);
+  line-height: 0.95;
 }
 
 .portfolio-transition h1::after {
