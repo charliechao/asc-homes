@@ -39,11 +39,13 @@ const isConfigured = Boolean(accessKey);
     data-web3form
     data-success-message="Thanks, your message has been sent."
     data-error-message="Something went wrong. Please try again."
+    data-min-submit-ms="1800"
   >
     <input type="hidden" name="access_key" value={accessKey} />
     <input type="hidden" name="subject" value={subject} />
     <input type="hidden" name="from_name" value="ASC Homes Website" />
     <input type="hidden" name="source" value={source} />
+    <input type="hidden" name="started_at" value="" data-form-started-at />
     <input type="checkbox" name="botcheck" class="form-botcheck" tabindex="-1" autocomplete="off" />
 
     <div class="form-grid">
@@ -66,12 +68,39 @@ const isConfigured = Boolean(accessKey);
 
     const status = form.querySelector("[data-form-status]");
     const submitButton = form.querySelector('button[type="submit"]');
+    const startedAtField = form.querySelector("[data-form-started-at]");
+    const startedAt = Date.now();
+
+    if (startedAtField instanceof HTMLInputElement) {
+      startedAtField.value = String(startedAt);
+    }
 
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
 
       const formData = new FormData(form);
       const accessKey = String(formData.get("access_key") || "").trim();
+      const minSubmitMs = Number(form.dataset.minSubmitMs || "0");
+      const elapsedMs = Date.now() - startedAt;
+      const botcheck = form.querySelector('input[name="botcheck"]');
+
+      if (botcheck instanceof HTMLInputElement && botcheck.checked) {
+        form.reset();
+        if (status) {
+          status.textContent =
+            form.dataset.successMessage || "Thanks, your message has been sent.";
+          status.dataset.state = "success";
+        }
+        return;
+      }
+
+      if (minSubmitMs > 0 && elapsedMs < minSubmitMs) {
+        if (status) {
+          status.textContent = "Please wait a moment before sending.";
+          status.dataset.state = "error";
+        }
+        return;
+      }
 
       if (!accessKey) {
         if (status) {
